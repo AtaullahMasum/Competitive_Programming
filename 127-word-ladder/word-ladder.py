@@ -3,9 +3,9 @@ class Solution:
         Set = set(wordList)
         if endWord not in Set:
             return 0
-        queue = [(beginWord, 1)]
+        queue = deque([(beginWord, 1)])
         while queue :
-            word, level = queue.pop(0)
+            word, level = queue.popleft()
             if word == endWord:
                 return level
             for i in range(len(word)):
