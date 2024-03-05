@@ -29,7 +29,7 @@ class Solution:
                 elif dist[adjacent] == weight + dist[node]:
                     ways[adjacent] = (ways[adjacent] + ways[node]) % (10 ** 9 + 7)  # Accumulate ways from all possible paths
         
-        return ways[n - 1] 
+        return ways[n - 1] %(10 ** 9 + 7) 
         graph = [[] for _ in range(n)]
         for u, v, weight in roads:
             graph[u].append((v, weight))
