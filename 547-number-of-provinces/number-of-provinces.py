@@ -21,6 +21,28 @@ class DisjointSet:
       self.rank[ult_pa_u] += 1
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        #Solution 1
+        rows = len(isConnected)
+        cols = len(isConnected[0])
+        adjList = [[] for _ in range(rows)]
+        for i in range(rows):
+            for j in range(cols):
+                if isConnected[i][j] == 1 and i != j:
+                    adjList[i].append(j)
+                    adjList[j].append(i)
+        count = 0
+        visited = [0]*rows
+        def dfs(node):
+            visited[node] = 1
+            for i in adjList[node]:
+                if not visited[i]:
+                    dfs(i)
+        for i in range(rows):
+            if not visited[i]:
+                count +=1
+                dfs(i)
+        return count
+        #Solution 2
         V = len(isConnected)
         ds = DisjointSet(V)
         for i in range(V):
