@@ -21,6 +21,25 @@ class DisjointSet:
       self.rank[ult_pa_u] += 1
 class Solution:
     def makeConnected(self, n: int, connections: List[List[int]]) -> int:
+        if len(connections) < n-1:
+            return -1
+        graph = [[] for _ in range(n)]
+        for u,v in connections:
+            graph[u].append(v)
+            graph[v].append(u)
+        visited = [0]*n
+        def dfs(node):
+            visited[node] = 1
+            for adjacent in graph[node]:
+                if not visited[adjacent]:
+                    dfs(adjacent)
+        count = 0
+        for i in range(n):
+            if not visited[i]:
+                dfs(i)
+                count += 1
+        return count-1
+        #using DisjointSet
         ds = DisjointSet(n)
         extraedges = 0
         for u, v in connections:
