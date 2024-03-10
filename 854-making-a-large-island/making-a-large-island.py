@@ -1,7 +1,7 @@
 class DisjointSet:
     def __init__(self, V):
-        self.parent = [i for i in range(V)]
-        self.size = [1] * V
+        self.parent = [i for i in range(V+1)]
+        self.size = [1] * (V+1)
 
     def findUPa(self, node):
         if self.parent[node] == node:
