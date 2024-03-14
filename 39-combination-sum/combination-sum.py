@@ -3,9 +3,10 @@ class Solution:
         ans = []
         comb = []
         def backtrack(i, target):
+            if target == 0:
+               ans.append(comb.copy())
+               return
             if i == len(candidates):
-                if target == 0:
-                    ans.append(comb.copy())
                 return 
             if candidates[i] <= target:
                 comb.append(candidates[i])
