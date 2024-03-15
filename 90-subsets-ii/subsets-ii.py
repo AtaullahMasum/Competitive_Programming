@@ -1,7 +1,6 @@
 class Solution:
     def findSubset(self, index, nums, result, each_result):
-       
-        result.append(each_result.copy())
+        result.append(each_result[:])
         for i in range(index, len(nums)):
             if i >   index and nums[i]==nums[i-1]:
                 continue
